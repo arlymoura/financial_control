@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 9.99
+  note: MyText
+  status: 1
+  client: one
+
+two:
+  amount: 9.99
+  note: MyText
+  status: 1
+  client: two

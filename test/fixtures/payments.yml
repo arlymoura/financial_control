@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 9.99
+  date: 2017-08-01
+  bill: one
+
+two:
+  value: 9.99
+  date: 2017-08-01
+  bill: two
