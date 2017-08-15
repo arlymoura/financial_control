@@ -10,42 +10,42 @@ class DrivesController < ApplicationController
 
   # GET /drives/1
   def show
-    render json: @drife
+    render json: @drive
   end
 
   # POST /drives
   def create
-    @drife = Drive.new(drife_params)
+    @drive = Drive.new(drive_params)
 
-    if @drife.save
-      render json: @drife, status: :created, location: @drife
+    if @drive.save
+      render json: @drive, status: :created, location: @drive
     else
-      render json: @drife.errors, status: :unprocessable_entity
+      render json: @drive.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /drives/1
   def update
-    if @drife.update(drife_params)
-      render json: @drife
+    if @drive.update(drive_params)
+      render json: @drive
     else
-      render json: @drife.errors, status: :unprocessable_entity
+      render json: @drive.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /drives/1
   def destroy
-    @drife.destroy
+    @drive.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_drife
-      @drife = Drive.find(params[:id])
+    def set_drive
+      @drive = Drive.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
-    def drife_params
-      params.require(:drife).permit(:name)
+    def drive_params
+      params.require(:drive).permit(:name)
     end
 end

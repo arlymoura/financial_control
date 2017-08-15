@@ -2,7 +2,16 @@ class ClientSerializer < ActiveModel::Serializer
   attributes :id, :name, :cpf, :rg, :phone1, :phone2,
     :street, :number, :district, :city, :created_at
 
+  # has_many :bills
   has_many :bills
+
+  def bills
+    object.bills.order(date: :desc)
+  end
+
+  def payments
+    object.bills.payments.order(date: :desc)
+  end
 
 
   def attributes(*args)

@@ -3,7 +3,7 @@ class BillsController < ApplicationController
 
   # GET /bills
   def index
-    @bills = Bill.order(date: :desc)
+    @bills = Bill.order(date: :asc)
 
     # render json: @bills.map { |bill| bill.atributes.merge({ pay: bill.value }) }
     render json: @bills, include: [:payments]
