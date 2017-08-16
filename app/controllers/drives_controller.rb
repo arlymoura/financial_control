@@ -3,7 +3,7 @@ class DrivesController < ApplicationController
 
   # GET /drives
   def index
-    @drives = Drive.all
+    @drives = Drive.order('name')
 
     # render json: @drives, include: '**'
     render json: @drives, each_serializer: ShortDriveSerializer, root: :drive
