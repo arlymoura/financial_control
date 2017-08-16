@@ -6,12 +6,13 @@ class ClientsController < ApplicationController
     @clients = Client.order(:name)
 
     # render json: @clients, include: 'bills', fields: { payments: ['value', 'date', 'created_at'] }
-    render json: @clients, include: '**'
+    # render json: @clients, include: '**'
+    render json: @clients, each_serializer: ShortClientSerializer, root: :client
   end
 
   # GET /clients/1
   def show
-    render json: @client, include: [:bills, :payments]
+    render json: @client, serializer: ClientSerializer
   end
 
   # POST /clients

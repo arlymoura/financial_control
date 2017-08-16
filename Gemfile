@@ -38,6 +38,8 @@ group :development do
   gem 'awesome_print'
 end
 
+gem 'rails_12factor', group: :production
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -47,3 +49,5 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem "cpf_cnpj"
 gem 'devise_token_auth'
 gem 'devise-i18n'
+
+ruby '2.3.0'

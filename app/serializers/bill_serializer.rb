@@ -1,9 +1,7 @@
 class BillSerializer < ActiveModel::Serializer
 
   attributes :id, :value, :note, :status, :date, :paid
-  
 
-  # belongs_to :client
   has_many :payments
 
   def paid
@@ -12,6 +10,10 @@ class BillSerializer < ActiveModel::Serializer
       paid += payment.value
     end
   paid
+  end
+
+  def payments
+    object.payments.order(date: :desc)
   end
 
   def attributes(*args)

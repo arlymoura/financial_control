@@ -1,16 +1,17 @@
 class DrivesController < ApplicationController
-  before_action :set_drife, only: [:show, :update, :destroy]
+  before_action :set_drive, only: [:show, :update, :destroy]
 
   # GET /drives
   def index
     @drives = Drive.all
 
-    render json: @drives, include: '**'
+    # render json: @drives, include: '**'
+    render json: @drives, each_serializer: ShortDriveSerializer, root: :drive
   end
 
   # GET /drives/1
   def show
-    render json: @drive
+    render json: @drive, serializer: DriveSerializer
   end
 
   # POST /drives
