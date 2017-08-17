@@ -1,6 +1,6 @@
 class BillSerializer < ActiveModel::Serializer
 
-  attributes :id, :value, :note, :status, :date, :paid
+  attributes :id, :value, :note, :status, :date, :paid, :client_id
 
   has_many :payments
 
