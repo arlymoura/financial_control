@@ -45,8 +45,9 @@ class BillsController < ApplicationController
       @bill = Bill.find(params[:id])
     end
 
+
     # Only allow a trusted parameter "white list" through.
     def bill_params
-      params.require(:bill).permit(:value, :note, :status, :date, :client_id)
+      params.require(:bill).permit(:value, :note, :status, :date, :client_id, :quant, :end_date)
     end
 end

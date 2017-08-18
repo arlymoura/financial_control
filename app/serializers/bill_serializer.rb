@@ -18,6 +18,7 @@ class BillSerializer < ActiveModel::Serializer
     object.status
   end
 
+
   def payments
     object.payments.order(date: :desc)
   end
