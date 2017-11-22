@@ -39,6 +39,10 @@ class DrivesController < ApplicationController
     @drive.destroy
   end
 
+  def daily_collation(id, day)
+  
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_drive

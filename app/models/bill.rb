@@ -4,4 +4,6 @@ class Bill < ApplicationRecord
 
   enum status: [:active, :paid]
 
+  
+
 end
