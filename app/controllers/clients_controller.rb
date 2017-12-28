@@ -6,8 +6,13 @@ class ClientsController < ApplicationController
     @clients = Client.order(:name)
 
     # render json: @clients, include: 'bills', fields: { payments: ['value', 'date', 'created_at'] }
-    # render json: @clients, include: '**'
-    render json: @clients, each_serializer: ShortClientSerializer, root: :client
+    render json: @clients, include: '**'
+    # render json: @clients, each_serializer: ShortClientSerializer, root: :client
+  end
+
+  def count_clients
+    @ccount = Client.all.count()
+    render json: @ccount;
   end
 
   # GET /clients/1
@@ -48,6 +53,6 @@ class ClientsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def client_params
-      params.require(:client).permit(:name, :cpf, :rg, :phone1, :phone2, :street, :number, :district, :city, :drive_id)
+      params.require(:client).permit(:name, :cpf, :rg, :phone1, :phone2, :street, :number, :district, :city, :drive_id, :source_hash)
     end
 end

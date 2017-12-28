@@ -4,9 +4,13 @@ class DrivesController < ApplicationController
   # GET /drives
   def index
     @drives = Drive.order('name')
+    render json: @drives, include: '**'
+    # render json: @drives, each_serializer: ShortDriveSerializer, root: :drive
+  end
 
-    # render json: @drives, include: '**'
-    render json: @drives, each_serializer: ShortDriveSerializer, root: :drive
+  def count_drives
+    @drives = Drive.all.count()
+    render json: @drives
   end
 
   # GET /drives/1
@@ -17,7 +21,6 @@ class DrivesController < ApplicationController
   # POST /drives
   def create
     @drive = Drive.new(drive_params)
-
     if @drive.save
       render json: @drive, status: :created, location: @drive
     else

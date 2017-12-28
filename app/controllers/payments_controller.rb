@@ -8,6 +8,12 @@ class PaymentsController < ApplicationController
     render json: @payments
   end
 
+  def count_payments
+    @ccount = Payment.all.count()
+    render json: @ccount;
+  end
+
+
   # GET /payments/1
   def show
     render json: @payment
@@ -16,6 +22,9 @@ class PaymentsController < ApplicationController
   # POST /payments
   def create
     @payment = Payment.new(payment_params)
+    unless @payment.bill_id.present?
+      @payment.bill_id = Bill.where(source_hash: @payment.bill_hash).last.id
+    end
 
     if @payment.save
       render json: @payment, status: :created, location: @payment
@@ -46,6 +55,6 @@ class PaymentsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def payment_params
-      params.require(:payment).permit(:value, :date, :bill_id)
+      params.require(:payment).permit(:value, :date, :bill_id, :source_hash, :bill_hash)
     end
 end

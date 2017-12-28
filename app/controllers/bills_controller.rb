@@ -9,6 +9,12 @@ class BillsController < ApplicationController
     render json: @bills, include: [:payments]
   end
 
+  def count_bills
+    @ccount = Bill.all.count()
+    render json: @ccount;
+  end
+
+
   # GET /bills/1
   def show
     render json: @bill, include: [:payments]
@@ -17,6 +23,9 @@ class BillsController < ApplicationController
   # POST /bills
   def create
     @bill = Bill.new(bill_params)
+    unless @bill.client_id.present?
+      @bill.bill_id = Client.where(source_hash: @bill.client_hash).last.id
+    end
 
     if @bill.save
       render json: @bill, status: :created, location: @bill
@@ -48,6 +57,6 @@ class BillsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def bill_params
-      params.require(:bill).permit(:value, :note, :status, :date, :client_id, :quant, :end_date)
+      params.require(:bill).permit(:value, :note, :status, :date, :client_id, :quant, :end_date, :source_hash, :client_hash)
     end
 end

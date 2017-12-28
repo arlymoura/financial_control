@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :bills
   resources :clients
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  #
+  get 'clients_count', to: 'clients#count_clients'
+  get 'drives_count', to: 'drives#count_drives'
+  get 'bills_count', to: 'bills#count_bills'
 end

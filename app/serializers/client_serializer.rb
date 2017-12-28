@@ -1,6 +1,6 @@
 class ClientSerializer < ActiveModel::Serializer
   attributes :id, :name, :cpf, :rg, :phone1, :phone2,
-    :street, :number, :district, :city, :created_at
+    :street, :number, :district, :city, :created_at, :source_hash
 
   has_many :bills
 

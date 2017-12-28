@@ -1,5 +1,5 @@
 class PaymentSerializer < ActiveModel::Serializer
-  attributes :id, :value, :date, :amount, :debit
+  attributes :id, :value, :date, :amount, :debit, :source_hash, :bill_hash
 
 
   def amount

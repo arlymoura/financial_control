@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170818015513) do
+ActiveRecord::Schema.define(version: 20171227015056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20170818015513) do
     t.datetime "updated_at", null: false
     t.date "end_date"
     t.integer "quant"
+    t.string "source_hash"
+    t.string "client_hash"
     t.index ["client_id"], name: "index_bills_on_client_id"
   end
 
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170818015513) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "drive_id"
+    t.string "source_hash"
     t.index ["drive_id"], name: "index_clients_on_drive_id"
   end
 
@@ -56,6 +59,8 @@ ActiveRecord::Schema.define(version: 20170818015513) do
     t.bigint "bill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "source_hash"
+    t.string "bill_hash"
     t.index ["bill_id"], name: "index_payments_on_bill_id"
   end
 
