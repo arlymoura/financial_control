@@ -13,6 +13,13 @@ class PaymentsController < ApplicationController
     render json: @ccount;
   end
 
+  def calculate_payments
+    date_start = params[:client][:date_start].to_datetime
+    date_end = params[:client][:date_end].to_datetime
+    @ccount = Payment.where('created_at BETWEEN ? AND ?', date_start.beginning_of_day, date_end.end_of_day).map(&:value).sum
+    render json: @ccount, status: :ok
+  end
+
 
   # GET /payments/1
   def show
