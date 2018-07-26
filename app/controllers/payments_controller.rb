@@ -16,7 +16,7 @@ class PaymentsController < ApplicationController
   def calculate_payments
     date_start = params[:client][:date_start].to_datetime
     date_end = params[:client][:date_end].to_datetime
-    @ccount = Payment.where('created_at BETWEEN ? AND ?', date_start.beginning_of_day, date_end.end_of_day).map(&:value).sum
+    @ccount = Payment.where('created_at BETWEEN ? AND ?', date_start.beginning_of_day, date_end.end_of_day)
     render json: @ccount, status: :ok
   end
 
