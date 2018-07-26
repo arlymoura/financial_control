@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get 'clients_count', to: 'clients#count_clients'
   get 'drives_count', to: 'drives#count_drives'
   get 'bills_count', to: 'bills#count_bills'
-  post '/payments/calculate', :to => 'payments#calculate_payments'
+  post '/reports/bills/calculate', :to => 'bills#calculate_bills'
+  post '/reports/payments/calculate', :to => 'payments#calculate_payments'
 end
