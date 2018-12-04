@@ -1,5 +1,7 @@
 class Drive < ApplicationRecord
   has_many :clients, dependent: :destroy
+  has_many :bills, through: :clients
+  has_many :payments, through: :bills
 
   def daily_collection(date = DateTime.now())
     sum = 0

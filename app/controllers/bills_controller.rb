@@ -17,7 +17,8 @@ class BillsController < ApplicationController
   def calculate_bills
     date_start = params[:client][:date_start].to_datetime
     date_end = params[:client][:date_end].to_datetime
-    @ccount = Bill.where('created_at BETWEEN ? AND ?', date_start.beginning_of_day, date_end.end_of_day)
+    drive = Drive.find(params[:client][:drive_id])
+    @ccount = drive.bills.where('bills.created_at BETWEEN ? AND ?', date_start.beginning_of_day, date_end.end_of_day)
     render json: @ccount, status: :ok
   end
 
