@@ -6,8 +6,8 @@ class ClientsController < ApplicationController
     @clients = Client.order(:name)
 
     # render json: @clients, include: 'bills', fields: { payments: ['value', 'date', 'created_at'] }
-    render json: @clients, include: '**'
-    # render json: @clients, each_serializer: ShortClientSerializer, root: :client
+    # render json: @clients, include: '**'
+    render json: @clients, each_serializer: ShortClientSerializer, root: :client
   end
 
   def count_clients

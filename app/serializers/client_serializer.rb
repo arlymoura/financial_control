@@ -1,11 +1,15 @@
 class ClientSerializer < ActiveModel::Serializer
   attributes :id, :name, :cpf, :rg, :phone1, :phone2,
-    :street, :number, :district, :city, :created_at, :source_hash
+    :street, :number, :district, :city, :created_at, :source_hash, :last_bill_payments
 
   has_many :bills
 
   def bills
     object.bills.order(date: :desc)
+  end
+
+  def last_bill_payments
+    object.bills.last.payments if object.bills.present?
   end
 
 

@@ -6,7 +6,8 @@ class BillsController < ApplicationController
     @bills = Bill.order(date: :asc)
 
     # render json: @bills.map { |bill| bill.atributes.merge({ pay: bill.value }) }
-    render json: @bills, include: [:payments]
+    # render json: @bills, include: [:payments]
+    render json: @bills
   end
 
   def count_bills
@@ -25,7 +26,7 @@ class BillsController < ApplicationController
 
   # GET /bills/1
   def show
-    render json: @bill, include: [:payments]
+    render json: @bill, serializer: BillSerializer
   end
 
   # POST /bills
