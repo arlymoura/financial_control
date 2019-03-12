@@ -6,7 +6,7 @@ class BillSerializer < ActiveModel::Serializer
   has_many :payments
 
   def paid
-    object.payments.map(&:value).sum
+    object.payments.map(&:value).sum if object.payments.present?
   end
 
   def total_payments
@@ -15,7 +15,7 @@ class BillSerializer < ActiveModel::Serializer
   end
 
   def status
-    return (object.status = 'paid') if paid() >= object.value
+    return (object.status = 'paid') if paid() and paid() >= object.value
     object.status
   end
 
