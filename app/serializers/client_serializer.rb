@@ -1,6 +1,7 @@
 class ClientSerializer < ActiveModel::Serializer
-  attributes :id, :name, :cpf, :rg, :phone1, :phone2,
-    :street, :number, :district, :city, :created_at, :source_hash, :last_bill_payments
+  attributes :id, :name, :cpf, :rg, :phone1, :phone2, :genre,
+    :street, :number, :district, :city, :created_at, :source_hash,
+    :last_bill_payments, :drive_name
 
   has_many :bills
 
@@ -12,7 +13,9 @@ class ClientSerializer < ActiveModel::Serializer
     object.bills.last.payments if object.bills.present?
   end
 
-
+  def drive_name
+    object.drive.name
+  end
 
   def attributes(*args)
     obj = super(*args)

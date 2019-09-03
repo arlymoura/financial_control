@@ -27,4 +27,5 @@ test:
 
 production:
   <<: *default
-  database: payments_production
+  database: payments_development
+

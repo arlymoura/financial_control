@@ -1,0 +1,5 @@
+en:
+  enumerations:
+    bill_status:
+      active: "Active"
+      paid: "Paid"

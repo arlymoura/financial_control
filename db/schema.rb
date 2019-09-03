@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171227015056) do
+ActiveRecord::Schema.define(version: 20190821171109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171227015056) do
   create_table "bills", force: :cascade do |t|
     t.decimal "value"
     t.text "note"
-    t.integer "status"
+    t.string "status"
     t.date "date"
     t.bigint "client_id"
     t.datetime "created_at", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20171227015056) do
     t.datetime "updated_at", null: false
     t.bigint "drive_id"
     t.string "source_hash"
+    t.string "genre", default: "male"
     t.index ["drive_id"], name: "index_clients_on_drive_id"
   end
 
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(version: 20171227015056) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.decimal "value"
+    t.decimal "value", default: "0.0", null: false
     t.date "date"
     t.bigint "bill_id"
     t.datetime "created_at", null: false

@@ -50,5 +50,6 @@ gem "cpf_cnpj"
 gem 'devise'
 gem 'devise_token_auth'
 gem 'devise-i18n'
+gem 'enumerate_it'
 
 ruby '2.3.0'
