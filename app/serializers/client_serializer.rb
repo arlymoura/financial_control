@@ -1,16 +1,16 @@
 class ClientSerializer < ActiveModel::Serializer
   attributes :id, :name, :cpf, :rg, :phone1, :phone2, :genre,
     :street, :number, :district, :city, :created_at, :source_hash,
-    :last_bill_payments, :drive_name, :last_bill
+    :last_bill_payments, :drive_name, :last_bill, :bills
 
   has_many :bills
 
   def bills
-    object.bills.order(date: :desc)
+    object.bills.where(status: :paid).order(date: :desc).map{ |ob| BillSerializer.new(ob)}
   end
 
   def last_bill
-    BillSerializer.new(object.bills.last)
+    BillSerializer.new(object.bills.order(date: :desc).first)
   end
 
   def last_bill_payments

@@ -1,7 +1,7 @@
 class BillSerializer < ActiveModel::Serializer
 
   attributes :id, :value, :note, :status, :date, :paid, :quant, :end_date, :client_id, :total_payments,
-             :source_hash, :client_hash
+             :parcel_value, :source_hash, :client_hash
 
   has_many :payments
 
@@ -17,6 +17,12 @@ class BillSerializer < ActiveModel::Serializer
   def status
     return (object.status = 'paid') if paid() and paid() >= object.value
     object.status
+  end
+
+  def parcel_value
+    value = 0.00
+    value = object.value / object.quant if object.value.present? and object.quant.present? and object.quant > 0
+    value
   end
 
 
